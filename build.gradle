@@ -1,0 +1,30 @@
+buildscript {
+    dependencies {
+        classpath "gradle.plugin.com.github.maiflai:gradle-scalatest:0.19"
+    }
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
+
+apply plugin: 'scala'
+apply plugin: 'idea'
+apply plugin: 'com.github.maiflai.scalatest'
+apply from: 'gradle/versions.gradle'
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.additionalParameters = ["-language:postfixOps"]
+}
+
+dependencies {
+    implementation "org.scala-lang:scala-library:$versions.scala.major.$versions.scala.minor"
+    testImplementation "org.scalatest:scalatest_$versions.scala.major:$versions.scalatest"
+    testImplementation "org.scalactic:scalactic_$versions.scala.major:$versions.scalatest"
+    testRuntime "org.pegdown:pegdown:$versions.pegdown"
+}

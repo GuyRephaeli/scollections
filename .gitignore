@@ -1,7 +1,7 @@
 .gradle/
+gradle/wrapper/
 .idea/
 build/
-gradlew.bat
 *.iml
 *.ipr
 *.iws
